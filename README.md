@@ -39,14 +39,16 @@ cd Eventised-server
 
 - Events and Attendees
 
-- GET /api/events/getAll → Get all events (for Admin with pagination)
-- POST /api/events/create → Create a new event
-- GET /api/events/getById/:eventId → Get event by ID
-- GET /api/events/getAllUpcoming → Get all upcoming events
+# BASE_URL = https://eventised-server.onrender.com/api
 
-- GET /api/attendees/getAll → Get all attendees (for Admin with pagination)
-- GET /api/attendees/register → Register attendees to an event
-- GET /api/attendees/byEvent/:eventId → Get attendees of a specific event
+- GET /events/getAll → Get all events (for Admin with pagination)
+- POST /events/create → Create a new event
+- GET /events/getById/:eventId → Get event by ID
+- GET /events/getAllUpcoming → Get all upcoming events
+
+- GET /attendees/getAll → Get all attendees (for Admin with pagination)
+- GET /attendees/register → Register attendees to an event
+- GET /attendees/byEvent/:eventId → Get attendees of a specific event
 
 ---
 
@@ -61,3 +63,38 @@ cd Eventised-server
 - Stack choice: MERN (Node.js + Express + MongoDB) instead of Laravel + SQLite due to local environment issues. I tried have project(non-working) attached in zip.
 - Architecture follows MVC: models, routes, controllers.
 - Validation included for max capacity and duplicate registration.
+
+--
+
+## Schema
+
+1. # Attendees:
+
+   - const attendeeSchema = new mongoose.Schema(
+     {
+     name: { type: String, required: true },
+     email: { type: String, required: true },
+     eventId: {
+     type: mongoose.Schema.Types.ObjectId,
+     ref: "Event",
+     required: true,
+     },
+     },
+     { timestamps: true }
+     );
+
+--
+
+2. # Events
+
+   - const eventSchema = new mongoose.Schema(
+     {
+     name: { type: String, required: true, unique: true },
+     location: { type: String, required: true },
+     startTime: { type: Date, required: true },
+     endTime: { type: Date, required: true },
+     maxCapacity: { type: Number, required: true },
+     attendeesCount: { type: Number, default: 0 },
+     },
+     { timestamps: true }
+     );
