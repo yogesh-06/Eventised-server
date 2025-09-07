@@ -24,9 +24,6 @@ app.use(
   })
 );
 
-// Also handle preflight requests
-app.options("/*", cors());
-
 // Mount routes directly
 app.use("/api/events", eventRoutes);
 app.use("/api/attendees", attendeeRoutes);
