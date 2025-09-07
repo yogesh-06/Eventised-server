@@ -12,7 +12,17 @@ connectDB();
 const app = express();
 app.use(express.json());
 app.use(bodyParser.json());
-app.use(cors({ origin: ["http://localhost:3000"] }));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:3001",
+      "http://localhost:3002",
+      "https://eventised-client-vsoo.vercel.app/",
+    ],
+    credentials: true,
+  })
+);
 
 // Mount routes directly
 app.use("/api/events", eventRoutes);

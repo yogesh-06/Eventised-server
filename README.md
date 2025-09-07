@@ -32,7 +32,7 @@ Provides APIs for managing events, attendees, and admin functionality.
 1. Clone the repository:
 
 -```bash
-git clone https://github.com/<your-username>/Eventised-server.git
+git clone https://github.com/yogesh-06/Eventised-server.git
 cd Eventised-server
 
 ## API Endpoints
@@ -47,6 +47,12 @@ cd Eventised-server
 - GET /api/attendees/getAll → Get all attendees (for Admin with pagination)
 - GET /api/attendees/register → Register attendees to an event
 - GET /api/attendees/byEvent/:eventId → Get attendees of a specific event
+
+---
+
+# Deployments
+
+- ## Render : https://eventised-server.onrender.com/api/health
 
 ---
 
